@@ -25,6 +25,7 @@
 
 " Formatting {
     set wrap                      " Wrap long lines
+    set lbr                       " Break lines on sensible characters"
 " }
 "
 " Plugin specific {
@@ -32,4 +33,10 @@
     :let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
     :let g:notes_suffix = '.md'
     " 
+    " pandoc
+    let g:pandoc#filetypes#pandoc_markdown = 1
+    let g:pandoc#formatting#mode = "h"
+    if executable('pandoc')
+        let g:pandoc#formatting#equalprg = "pandoc -t markdown --atx-headers --reference-links"
+    endif
 " }
