@@ -8,7 +8,9 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim zshrc oh-my-zsh private scrotwm.conf Xresources"    # list of files/folders to symlink in homedir
+files="bashrc \
+       vimrc.local vimrc.bundles.local vimrc.before.local \
+       "    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -56,4 +58,12 @@ install_zsh () {
     fi
 }
 
+install_spf13 () {
+    # Test to see if spf13 is installed
+    if [ ! -d ~/.spf13-vim-3/ ]; then
+        echo "Installing SPF13-vim"
+        curl http://j.mp/spf13-vim3 -L -o - | sh
+    fi
+}
 install_zsh
+install_spf13
