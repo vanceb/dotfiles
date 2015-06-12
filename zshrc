@@ -83,3 +83,8 @@ export LANG=en_GB.UTF-8
 #
 # Set my default user name
 DEFAULT_USER=vance
+#
+# Set Vi mode as the default line editing mode
+bindkey -v
+# remove delay in switching between Vi modes (May need to increase this number if we see sideeffects)
+export KEYTIMEOUT=1
