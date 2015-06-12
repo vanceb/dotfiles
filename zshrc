@@ -86,5 +86,15 @@ DEFAULT_USER=vance
 #
 # Set Vi mode as the default line editing mode
 bindkey -v
+# Map jj to escape to match my Vim settings
+bindkey -M viins 'jj' vi-cmd-mode
+# enable incremental history search
+bindkey -M viins '^R' history-incremental-pattern-search-backward
+bindkey -M viins '^F' history-incremental-pattern-search-forward
+bindkey -M isearch '^R' history-incremental-pattern-search-backward
+bindkey -M isearch '^F' history-incremental-pattern-search-forward
+bindkey -M vicmd '/' history-incremental-pattern-search-backward
+bindkey -M vicmd '?' history-incremental-pattern-search-forward
+
 # remove delay in switching between Vi modes (May need to increase this number if we see sideeffects)
-export KEYTIMEOUT=1
+export KEYTIMEOUT=20

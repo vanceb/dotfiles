@@ -29,7 +29,12 @@
     set wrap                      " Wrap long lines
     set lbr                       " Break lines on sensible characters"
 " }
-"
+
+" Key Mapping {
+let mapleader = ","
+inoremap jj <ESC>       " Allow jj to exit insert mode (Like escape)
+" }
+
 " Plugin specific {
     " vim-notes
     :let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
