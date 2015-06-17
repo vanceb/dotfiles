@@ -11,6 +11,7 @@ olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc \
     vimrc.local vimrc.bundles.local vimrc.before.local \
     zshrc oh-my-zsh \
+    hammerspoon
     "    # list of files/folders to symlink in homedir
 
 ##########
