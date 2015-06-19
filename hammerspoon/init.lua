@@ -26,104 +26,78 @@ hs.alert.show("Config loaded")
 ------------------------------------------------------
 -- Window Placement
 ------------------------------------------------------
+--
 ------------------------------------------------------
--- Full screen
+-- Grid Placement
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "Up", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
-end)
+--
+hs.grid.MARGINX = 0
+hs.grid.MARGINY = 0
+hs.grid.GRIDWIDTH = 6
+hs.grid.GRIDHEIGHT = 2
 
 ------------------------------------------------------
--- Left half of screen
+-- Define common placements
+------------------------------------------------------
+Left50 = {x=0,y=0,w=3,h=2}
+Right50 = {x=3,y=0,w=3,h=2}
+Left33 = {x=0,y=0,w=2,h=2}
+Mid33 = {x=2,y=0,w=2,h=2}
+Right33 = {x=4,y=0,w=2,h=2}
+
+------------------------------------------------------
+-- Jump to standard placement
+------------------------------------------------------
+------------------------------------------------------
+-- Maximize
+------------------------------------------------------
+hs.hotkey.bind(hyper, "Up", hs.grid.maximizeWindow)
+------------------------------------------------------
+-- Half Left
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "Left", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    hs.grid.set(win, Left50, screen)
 end)
-
 ------------------------------------------------------
--- Right half of screen
+-- Half Right
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "Right", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    hs.grid.set(win, Right50, screen)
 end)
-
 ------------------------------------------------------
--- Thirds
-------------------------------------------------------
-------------------------------------------------------
--- Left Hand Side
+-- Third Left
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "1", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 3
-  f.h = max.h
-  win:setFrame(f)
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    hs.grid.set(win, Left33, screen)
 end)
---
 ------------------------------------------------------
--- Centre
+-- Third Middle
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "2", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 3)
-  f.y = max.y
-  f.w = max.w / 3
-  f.h = max.h
-  win:setFrame(f)
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    hs.grid.set(win, Mid33, screen)
+end)
+------------------------------------------------------
+-- Third Right
+------------------------------------------------------
+hs.hotkey.bind(hyper, "3", function()
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    hs.grid.set(win, Right33, screen)
 end)
 --
 ------------------------------------------------------
--- Right Hand Side
+-- Multi monitor
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "3", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (2 * max.w)/ 3
-  f.y = max.y
-  f.w = max.w / 3
-  f.h = max.h
-  win:setFrame(f)
-end)
+hs.hotkey.bind(hyper, ",", hs.grid.pushWindowNextScreen )
+hs.hotkey.bind(hyper, ".", hs.grid.pushWindowPrevScreen )
 
 ------------------------------------------------------
 -- Change Window Focus
