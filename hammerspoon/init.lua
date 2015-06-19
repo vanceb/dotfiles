@@ -37,7 +37,7 @@ hs.grid.GRIDWIDTH = 6
 hs.grid.GRIDHEIGHT = 2
 
 ------------------------------------------------------
--- Define common placements
+-- Define my standard placements
 ------------------------------------------------------
 Left50 = {x=0,y=0,w=3,h=2}
 Right50 = {x=3,y=0,w=3,h=2}
