@@ -63,7 +63,8 @@ export LANG=en_GB.UTF-8
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='mvim'
+   export EDITOR='vim'
+   #export EDITOR='mvim'
  fi
 
 # Compilation flags
@@ -80,6 +81,7 @@ export LANG=en_GB.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 #
 # Set my default user name
 DEFAULT_USER=vance

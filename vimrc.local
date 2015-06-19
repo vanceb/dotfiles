@@ -45,6 +45,6 @@ inoremap jj <ESC>       " Allow jj to exit insert mode (Like escape)
     let g:pandoc#filetypes#pandoc_markdown = 1
     let g:pandoc#formatting#mode = "h"
     if executable('pandoc')
-        let g:pandoc#formatting#equalprg = "pandoc -t markdown --atx-headers --reference-links"
+        let g:pandoc#formatting#equalprg = "pandoc -t markdown --atx-headers"
     endif
 " }
