@@ -54,6 +54,8 @@ Right50 = {x=3,y=0,w=3,h=2}
 Left33 = {x=0,y=0,w=2,h=2}
 Mid33 = {x=2,y=0,w=2,h=2}
 Right33 = {x=4,y=0,w=2,h=2}
+Top50 = {x=0,y=0,w=6,h=1}
+Bottom50 = {x=0,y=1,w=6,h=1}
 
 ------------------------------------------------------
 -- Manually tweak size and position
@@ -100,6 +102,24 @@ hs.hotkey.bind(hyper, "Right", function()
     local win = hs.window.focusedWindow()
     local screen = win:screen()
     hs.grid.set(win, Right50, screen)
+end)
+
+------------------------------------------------------
+-- Half Top
+------------------------------------------------------
+hs.hotkey.bind(hyper, "4", function()
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    hs.grid.set(win, Top50, screen)
+end)
+
+------------------------------------------------------
+-- Half Bottom
+------------------------------------------------------
+hs.hotkey.bind(hyper, "5", function()
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    hs.grid.set(win, Bottom50, screen)
 end)
 
 ------------------------------------------------------
