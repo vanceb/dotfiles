@@ -263,6 +263,19 @@ hs.hotkey.bind(hyper, 'h', function()
 end)
 
 ------------------------------------------------------
+-- Open or Focus key applications
+------------------------------------------------------
+hs.hotkey.bind(hyper, 'x', function()
+    hs.application.launchOrFocus('iTerm')
+end)
+hs.hotkey.bind(hyper, 'c', function()
+    hs.application.launchOrFocus('Google Chrome')
+end)
+hs.hotkey.bind(hyper, 'v', function()
+    hs.application.launchOrFocus('MacVim')
+end)
+
+------------------------------------------------------
 -- Pandoc create html on Markdown file save
 ------------------------------------------------------
 function to_html(files)
