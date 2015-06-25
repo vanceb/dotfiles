@@ -13,6 +13,7 @@
 local hyper = {"cmd", "alt"}
 local hyperShift = {"shift", "cmd", "alt"}
 local hyperCtrl = {"ctrl", "cmd", "alt"}
+local cmdCtrl = {"cmd", "ctrl"}
 
 ------------------------------------------------------
 -- Auto reload config file on change
@@ -31,6 +32,55 @@ function reloadConfig(files)
 end
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Config loaded")
+
+------------------------------------------------------
+-- WiFi watcher
+------------------------------------------------------
+local homeSSID = "deepspace" -- My home WiFi SSID
+local lastSSID = hs.wifi.currentNetwork()
+
+-- Callback function for WiFi SSID change events
+function ssidChangedCallback()
+    newSSID = hs.wifi.currentNetwork()
+
+    if newSSID == homeSSID and lastSSID ~= homeSSID then
+        -- We have gone from something that isn't my home WiFi, to something that is
+        home_arrived()
+    elseif newSSID ~= homeSSID and lastSSID == homeSSID then
+        -- We have gone from something that is my home WiFi, to something that isn't
+        home_departed()
+    end
+
+    lastSSID = newSSID
+end
+
+-- Perform tasks to configure the system for my home WiFi network
+function home_arrived()
+    hs.audiodevice.defaultOutputDevice():setVolume(25)
+
+    -- Note: sudo commands will need to have been pre-configured in /etc/sudoers, for passwordless access, e.g.:
+    -- vance ALL=(root) NOPASSWD: /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall *
+    os.execute("sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off")
+
+    hs.notify.new({
+          title='Hammerspoon',
+            informativeText='Welcome home!'
+        }):send():release()
+end
+
+-- Perform tasks to configure the system for any WiFi network other than my home
+function home_departed()
+    hs.audiodevice.defaultOutputDevice():setVolume(0)
+    os.execute("sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on")
+    hs.notify.new({
+          title='Hammerspoon',
+            informativeText='Shields Up'
+        }):send():release()
+end
+
+-- Start the wifi watcher
+local wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
+wifiWatcher:start()
 
 ------------------------------------------------------
 -- Window Placement
@@ -149,6 +199,16 @@ hs.hotkey.bind(hyper, "3", function()
     hs.grid.set(win, Right33, screen)
 end)
 --
+------------------------------------------------------
+-- Full Screen Management
+------------------------------------------------------
+hs.hotkey.bind(cmdCtrl, "Up", function()
+        local win = hs.window.focusedWindow()
+        if win ~= nil then
+            win:setFullScreen(not win:isFullScreen())
+        end
+    end)
+
 ------------------------------------------------------
 -- Multi monitor
 ------------------------------------------------------
