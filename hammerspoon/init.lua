@@ -39,21 +39,7 @@ hs.alert.show("Config loaded")
 local homeSSID = "deepspace" -- My home WiFi SSID
 local lastSSID = hs.wifi.currentNetwork()
 
--- Callback function for WiFi SSID change events
-function ssidChangedCallback()
-    newSSID = hs.wifi.currentNetwork()
-
-    if newSSID == homeSSID and lastSSID ~= homeSSID then
-        -- We have gone from something that isn't my home WiFi, to something that is
-        home_arrived()
-    elseif newSSID ~= homeSSID and lastSSID == homeSSID then
-        -- We have gone from something that is my home WiFi, to something that isn't
-        home_departed()
-    end
-
-    lastSSID = newSSID
-end
-
+-- Define functions used in the callback
 -- Perform tasks to configure the system for my home WiFi network
 function home_arrived()
     hs.audiodevice.defaultOutputDevice():setVolume(25)
@@ -72,10 +58,36 @@ end
 function home_departed()
     hs.audiodevice.defaultOutputDevice():setVolume(0)
     os.execute("sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on")
+    local msg = 'Shields Up'
+    if hs.wifi.currentNetwork() ~= nil then
+        msg = msg .. ' (' .. hs.wifi.currentNetwork() .. ')'
+    end
     hs.notify.new({
           title='Hammerspoon',
-            informativeText='Shields Up'
+            informativeText = msg
         }):send():release()
+end
+
+
+-- Do initial setup in case nothing has been set up to this point
+if lastSSID == homeSSID then
+    home_arrived()
+else
+    home_departed()
+end
+
+-- Callback function for WiFi SSID change events
+function ssidChangedCallback()
+    newSSID = hs.wifi.currentNetwork()
+
+    if newSSID == homeSSID and lastSSID ~= homeSSID then
+        -- We have gone from something that isn't my home WiFi, to something that is
+        home_arrived()
+    elseif newSSID ~= homeSSID and lastSSID == homeSSID and newSSID ~= nil then
+        -- We have gone from something that is my home WiFi, to something that isn't
+        home_departed()
+    end
+    lastSSID = newSSID
 end
 
 -- Start the wifi watcher
@@ -141,8 +153,12 @@ hs.hotkey.bind(hyper, "Up", hs.grid.maximizeWindow)
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "Left", function()
     local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    hs.grid.set(win, Left50, screen)
+    if win ~= nil then
+        local screen = win:screen()
+        hs.grid.set(win, Left50, screen)
+    else
+        hs.alert.show("No active window")
+    end
 end)
 
 ------------------------------------------------------
@@ -150,8 +166,12 @@ end)
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "Right", function()
     local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    hs.grid.set(win, Right50, screen)
+    if win ~= nil then
+        local screen = win:screen()
+        hs.grid.set(win, Right50, screen)
+    else
+        hs.alert.show("No active window")
+    end
 end)
 
 ------------------------------------------------------
@@ -159,8 +179,12 @@ end)
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "4", function()
     local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    hs.grid.set(win, Top50, screen)
+    if win ~= nil then
+        local screen = win:screen()
+        hs.grid.set(win, Top50, screen)
+    else
+        hs.alert.show("No active window")
+    end
 end)
 
 ------------------------------------------------------
@@ -168,8 +192,12 @@ end)
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "5", function()
     local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    hs.grid.set(win, Bottom50, screen)
+    if win ~= nil then
+        local screen = win:screen()
+        hs.grid.set(win, Bottom50, screen)
+    else
+        hs.alert.show("No active window")
+    end
 end)
 
 ------------------------------------------------------
@@ -177,8 +205,12 @@ end)
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "1", function()
     local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    hs.grid.set(win, Left33, screen)
+    if win ~= nil then
+        local screen = win:screen()
+        hs.grid.set(win, Left33, screen)
+    else
+        hs.alert.show("No active window")
+    end
 end)
 
 ------------------------------------------------------
@@ -186,8 +218,12 @@ end)
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "2", function()
     local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    hs.grid.set(win, Mid33, screen)
+    if win ~= nil then
+        local screen = win:screen()
+        hs.grid.set(win, Mid33, screen)
+    else
+        hs.alert.show("No active window")
+    end
 end)
 
 ------------------------------------------------------
@@ -195,8 +231,12 @@ end)
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "3", function()
     local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    hs.grid.set(win, Right33, screen)
+    if win ~= nil then
+        local screen = win:screen()
+        hs.grid.set(win, Right33, screen)
+    else
+        hs.alert.show("No active window")
+    end
 end)
 --
 ------------------------------------------------------
