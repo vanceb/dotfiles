@@ -48,6 +48,7 @@ function home_arrived()
     -- vance ALL=(root) NOPASSWD: /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall *
     os.execute("sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off")
 
+    hs.applescript('tell application "Tunnelblick" to disconnect all')
     hs.notify.new({
           title='Hammerspoon',
             informativeText='Welcome home!'
@@ -56,11 +57,17 @@ end
 
 -- Perform tasks to configure the system for any WiFi network other than my home
 function home_departed()
+    local status
+    local result
     hs.audiodevice.defaultOutputDevice():setVolume(0)
     os.execute("sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on")
     local msg = 'Shields Up'
     if hs.wifi.currentNetwork() ~= nil then
         msg = msg .. ' (' .. hs.wifi.currentNetwork() .. ')'
+    end
+    result, status = hs.applescript('tell application "Tunnelblick" to get state of first configuration where name = "London"')
+    if status == 'EXITING' then
+        result, status = hs.applescript('tell application "Tunnelblick" to connect "London"')
     end
     hs.notify.new({
           title='Hammerspoon',
@@ -80,12 +87,14 @@ end
 function ssidChangedCallback()
     newSSID = hs.wifi.currentNetwork()
 
-    if newSSID == homeSSID and lastSSID ~= homeSSID then
-        -- We have gone from something that isn't my home WiFi, to something that is
-        home_arrived()
-    elseif newSSID ~= homeSSID and lastSSID == homeSSID and newSSID ~= nil then
-        -- We have gone from something that is my home WiFi, to something that isn't
-        home_departed()
+    if lastSSID ~= newSSID then
+        if newSSID == homeSSID and lastSSID ~= homeSSID then
+            -- We have gone from something that isn't my home WiFi, to something that is
+            home_arrived()
+        elseif newSSID ~= homeSSID and lastSSID == homeSSID then
+            -- We have gone from something that is my home WiFi, to something that isn't
+            home_departed()
+        end
     end
     lastSSID = newSSID
 end
@@ -327,4 +336,3 @@ function to_html(files)
     end
 end
 hs.pathwatcher.new(os.getenv("HOME") .. "/Documents/md", to_html):start()
-
