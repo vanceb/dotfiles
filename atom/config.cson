@@ -1,0 +1,21 @@
+"*":
+  "exception-reporting":
+    userId: "5256f076-ad5a-5ad3-e85b-d2168960810c"
+  welcome:
+    showOnStartup: false
+  core:
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]
+    disabledPackages: [
+      "ex-mode"
+    ]
+  editor:
+    invisibles: {}
+    fontFamily: "Source Code Pro for Powerline"
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+  "vim-mode": {}
+  "one-light-ui": {}
+  "markdown-preview-pandoc": {}
