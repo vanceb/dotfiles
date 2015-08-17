@@ -102,3 +102,22 @@ bindkey -M vicmd '?' history-incremental-pattern-search-forward
 
 # remove delay in switching between Vi modes (May need to increase this number if we see sideeffects)
 export KEYTIMEOUT=20
+
+# Set architecture flags
+export ARCHFLAGS="-arch x86_64"
+
+# Brew...
+# Ensure user-installed binaries take precedence
+export PATH=/usr/local/bin:$PATH
+
+# Python specific settings
+# Require pip to only install python packages in a virtualenv...
+export PIP_REQUIRE_VIRTUALENV=true
+# Create a command that explicitly allows installation in the global environment
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
+export WORKON_HOME=~/Virtualenvs
