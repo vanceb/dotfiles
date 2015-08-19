@@ -1,24 +1,34 @@
 ------------------------------------------------------
 -- Vance's Hammerspoon config
---
 -- For some good ideas see:
 -- https://github.com/cmsj/hammerspoon-config/blob/master/init.lua
---
 ------------------------------------------------------
---
+
 ------------------------------------------------------
 -- Define my Hyper key modifiers
 ------------------------------------------------------
---
+
 local hyper = {"cmd", "alt"}
 local hyperShift = {"shift", "cmd", "alt"}
 local hyperCtrl = {"ctrl", "cmd", "alt"}
 local cmdCtrl = {"cmd", "ctrl"}
 
 ------------------------------------------------------
+-- Capture the hostname,
+-- so we can have host specific behaviour
+------------------------------------------------------
+
+local hostname = hs.host.localizedName()
+
+-- Define machines:
+local work = "surevine_vance"
+local laptop = "vances_macbook"
+local desktop = "vances_imac"
+
+------------------------------------------------------
 -- Auto reload config file on change
 ------------------------------------------------------
---
+
 function reloadConfig(files)
     doReload = false
     for _,file in pairs(files) do
@@ -31,16 +41,20 @@ function reloadConfig(files)
     end
 end
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-hs.alert.show("Config loaded")
+hs.alert.show("Config loaded: " .. hostname)
 
 ------------------------------------------------------
 -- WiFi watcher
 ------------------------------------------------------
+
 local homeSSID = "deepspace" -- My home WiFi SSID
 local lastSSID = hs.wifi.currentNetwork()
 
 -- Define functions used in the callback
+------------------------------------------------------
+
 -- Perform tasks to configure the system for my home WiFi network
+------------------------------------------------------
 function home_arrived()
     hs.audiodevice.defaultOutputDevice():setVolume(25)
 
@@ -56,6 +70,7 @@ function home_arrived()
 end
 
 -- Perform tasks to configure the system for any WiFi network other than my home
+------------------------------------------------------
 function home_departed()
     local status
     local result
@@ -75,15 +90,8 @@ function home_departed()
         }):send():release()
 end
 
-
--- Do initial setup in case nothing has been set up to this point
-if lastSSID == homeSSID then
-    home_arrived()
-else
-    home_departed()
-end
-
 -- Callback function for WiFi SSID change events
+------------------------------------------------------
 function ssidChangedCallback()
     newSSID = hs.wifi.currentNetwork()
 
@@ -99,19 +107,32 @@ function ssidChangedCallback()
     lastSSID = newSSID
 end
 
--- Start the wifi watcher
-local wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
-wifiWatcher:start()
+-- Start the wifi watcher (for certain hosts)
+------------------------------------------------------
+if hostname == laptop then
+
+  -- Do initial setup in case nothing has been set up to this point
+  if lastSSID == homeSSID then
+      home_arrived()
+  else
+      home_departed()
+  end
+  -- Start the wifi watcher
+  local wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
+  wifiWatcher:start()
+
+end
 
 ------------------------------------------------------
 -- Window Placement
 ------------------------------------------------------
+
 -- disable animation
 hs.window.animationDuration = 0
 ------------------------------------------------------
 -- Grid Placement
 ------------------------------------------------------
---
+
 hs.grid.MARGINX = 0
 hs.grid.MARGINY = 0
 hs.grid.GRIDWIDTH = 6
@@ -120,6 +141,7 @@ hs.grid.GRIDHEIGHT = 2
 ------------------------------------------------------
 -- Define my standard placements
 ------------------------------------------------------
+
 Left50 = {x=0,y=0,w=3,h=2}
 Right50 = {x=3,y=0,w=3,h=2}
 Left33 = {x=0,y=0,w=2,h=2}
@@ -131,10 +153,11 @@ Bottom50 = {x=0,y=1,w=6,h=1}
 ------------------------------------------------------
 -- Manually tweak size and position
 ------------------------------------------------------
---
+
 ------------------------------------------------------
 -- Size
 ------------------------------------------------------
+
 hs.hotkey.bind(hyperCtrl, "Down", hs.grid.resizeWindowTaller)
 hs.hotkey.bind(hyperCtrl, "Up", hs.grid.resizeWindowShorter)
 hs.hotkey.bind(hyperCtrl, "Left", hs.grid.resizeWindowThinner)
@@ -143,6 +166,7 @@ hs.hotkey.bind(hyperCtrl, "Right", hs.grid.resizeWindowWider)
 ------------------------------------------------------
 -- Grid Position
 ------------------------------------------------------
+
 hs.hotkey.bind(hyperShift, "Up", hs.grid.pushWindowUp)
 hs.hotkey.bind(hyperShift, "Down", hs.grid.pushWindowDown)
 hs.hotkey.bind(hyperShift, "Left", hs.grid.pushWindowLeft)
@@ -151,13 +175,12 @@ hs.hotkey.bind(hyperShift, "Right", hs.grid.pushWindowRight)
 ------------------------------------------------------
 -- Jump to standard placement
 ------------------------------------------------------
---
-------------------------------------------------------
+
 -- Maximize
 ------------------------------------------------------
+
 hs.hotkey.bind(hyper, "Up", hs.grid.maximizeWindow)
 
-------------------------------------------------------
 -- Half Left
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "Left", function()
@@ -170,7 +193,6 @@ hs.hotkey.bind(hyper, "Left", function()
     end
 end)
 
-------------------------------------------------------
 -- Half Right
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "Right", function()
@@ -183,7 +205,6 @@ hs.hotkey.bind(hyper, "Right", function()
     end
 end)
 
-------------------------------------------------------
 -- Half Top
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "4", function()
@@ -196,7 +217,6 @@ hs.hotkey.bind(hyper, "4", function()
     end
 end)
 
-------------------------------------------------------
 -- Half Bottom
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "5", function()
@@ -209,7 +229,6 @@ hs.hotkey.bind(hyper, "5", function()
     end
 end)
 
-------------------------------------------------------
 -- Third Left
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "1", function()
@@ -222,7 +241,6 @@ hs.hotkey.bind(hyper, "1", function()
     end
 end)
 
-------------------------------------------------------
 -- Third Middle
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "2", function()
@@ -235,7 +253,6 @@ hs.hotkey.bind(hyper, "2", function()
     end
 end)
 
-------------------------------------------------------
 -- Third Right
 ------------------------------------------------------
 hs.hotkey.bind(hyper, "3", function()
@@ -247,8 +264,7 @@ hs.hotkey.bind(hyper, "3", function()
         hs.alert.show("No active window")
     end
 end)
---
-------------------------------------------------------
+
 -- Full Screen Management
 ------------------------------------------------------
 hs.hotkey.bind(cmdCtrl, "Up", function()
@@ -258,7 +274,6 @@ hs.hotkey.bind(cmdCtrl, "Up", function()
         end
     end)
 
-------------------------------------------------------
 -- Multi monitor
 ------------------------------------------------------
 hs.hotkey.bind(hyper, ",", hs.grid.pushWindowNextScreen )
@@ -267,8 +282,7 @@ hs.hotkey.bind(hyper, ".", hs.grid.pushWindowPrevScreen )
 ------------------------------------------------------
 -- Change Window Focus
 ------------------------------------------------------
---
-------------------------------------------------------
+
 -- Hyper Down to show window hints
 ------------------------------------------------------
 hs.hotkey.bind(hyper, 'Down', function()
@@ -276,7 +290,6 @@ hs.hotkey.bind(hyper, 'Down', function()
     hs.hints.windowHints()
 end)
 
-------------------------------------------------------
 -- hjkl to move window focus
 ------------------------------------------------------
 hs.hotkey.bind(hyper, 'k', function()
@@ -311,7 +324,6 @@ hs.hotkey.bind(hyper, 'h', function()
     end
 end)
 
-------------------------------------------------------
 -- Open or Focus key applications
 ------------------------------------------------------
 hs.hotkey.bind(hyper, 'x', function()
@@ -327,6 +339,7 @@ end)
 ------------------------------------------------------
 -- Pandoc create html on Markdown file save
 ------------------------------------------------------
+
 function to_html(files)
     for _,file in pairs(files) do
         if file:sub(-3) == ".md" then
