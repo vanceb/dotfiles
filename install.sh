@@ -20,7 +20,7 @@ distro() {
 
 
 install_fish() {
-  sudo $install fish
+  $install fish
 }
 
 install_zsh () {
@@ -130,13 +130,13 @@ elif [[ $platform == "Linux" ]]; then
   echo "Detected distribution $os"
   case $os in 
     Ubuntu)
-      install="apt-get install"
+      install="sudo apt-get install"
       ;;
     Debian)
-      install="apt-get install"
+      install="sudo apt-get install"
       ;;
     Centos)
-      install="yum install"
+      install="sudo yum install"
       ;;
     *)
       echo "Unknown distribution - can't automatically install packages"
