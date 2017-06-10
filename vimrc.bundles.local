@@ -1,5 +1,0 @@
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'vim-pandoc/vim-pandoc-syntax'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-notes'
-UnBundle 'neocomplcache'
