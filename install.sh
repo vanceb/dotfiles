@@ -93,7 +93,7 @@ install_pandoc () {
 ###################################################################
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc \
+files="bashrc bash_profile \
   vimrc vim \
   config
 "    # list of files/folders to symlink in homedir
