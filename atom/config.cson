@@ -1,0 +1,23 @@
+"*":
+  core:
+    disabledPackages: [
+      "language-gfm"
+      "markdown-preview"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "solarized-dark-syntax"
+    ]
+  editor:
+    softWrapAtPreferredLineLength: true
+    softWrapHangingIndent: 2
+    tabLength: 4
+  "exception-reporting":
+    userId: "1fcfdc95-5a58-4317-9c28-f6a922bb929d"
+  "highlight-line":
+    enableSelectionBorder: true
+  "markdown-preview-plus":
+    enablePandoc: true
+    pandocPath: "/usr/bin/pandoc"
+    useLazyHeaders: false

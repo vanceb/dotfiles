@@ -84,6 +84,7 @@ olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc bash_profile \
   vimrc vim \
   hammerspoon \
+  atom \
   config
 "    # list of files/folders to symlink in homedir
 

@@ -1,4 +1,17 @@
-config/fish/fish_history
-config/lxc/
-config/config
-config/fish/fishd*
+# Specific file types
+*.swp
+
+# Specific files and directories in .config
+# Ignore everything in config with exceptions
+config
+!config/fish/config.fish
+
+# Atom sync
+# Ignore these directories
+atom/blob-store/
+atom/compile-cache/
+atom/packages/
+atom/storage/
+atom/.apm/
+atom/.node-gyp/
+
