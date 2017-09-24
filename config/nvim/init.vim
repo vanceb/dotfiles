@@ -4,7 +4,51 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" TODO: Load plugins here (pathogen or vundle)
+""""""""""""""""
+" Manage Plugins
+"
+""""""""""""""""
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Checkout plugins on https://vimawesome.com/
+"
+" Make sure you use single quotes
+
+" Tree view file plugin
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" Git support
+Plug 'tpope/vim-fugitive'
+
+" Syntax checking
+Plug 'scrooloose/syntastic'
+
+" Surround matching
+Plug 'tpope/vim-surround'
+
+" Fuzzy searching
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Great statusline
+Plug 'vim-airline/vim-airline'
+
+" Solarized colour scheme
+Plug 'altercation/vim-colors-solarized'
+
+" Display current file hierarchy using tags
+Plug 'majutsushi/tagbar'
+
+" Initialize plugin system
+call plug#end()
+
+
+""""""""""""""""""""
+" Define some basics
+"
+""""""""""""""""""""
 
 " Turn on syntax highlighting
 syntax on
@@ -12,8 +56,9 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
-" TODO: Pick a leader key
-" let mapleader = ","
+
+" Define the leader key
+let mapleader = ","
 
 " Security
 set modelines=0
@@ -63,6 +108,12 @@ set laststatus=2
 set showmode
 set showcmd
 
+
+""""""""""
+" Map keys
+"
+""""""""""
+
 " Searching
 nnoremap / /\v
 vnoremap / /\v
@@ -91,37 +142,6 @@ set listchars=tab:▸\ ,eol:¬
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.local/share/nvim/plugged')
-
-" Make sure you use single quotes
-
-" Tree view file plugin
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
-" Git support
-Plug 'tpope/vim-fugitive'
-
-" Syntax checking
-Plug 'scrooloose/syntastic'
-
-" Surround matching
-Plug 'tpope/vim-surround'
-
-" Fuzzy searching
-Plug 'ctrlpvim/ctrlp.vim'
-
-" Great statusline
-Plug 'vim-airline/vim-airline'
-
-" Solarized colour scheme
-Plug 'altercation/vim-colors-solarized'
-
-" Initialize plugin system
-call plug#end()
-
 " Key mappings for the plugins
 map <C-\> :NERDTreeToggle<CR>
 " Close nvim if NERDTree is the only remaining buffer
@@ -129,9 +149,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Color scheme (terminal)
 set t_Co=256
-set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
+"if has('termguicolors') && !has('gui_running')
+"   set termguicolors
+"endif
+set background=dark
 " put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
 " in ~/.vim/colors/ and uncomment:
 colorscheme solarized
