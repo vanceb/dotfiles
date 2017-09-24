@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<FileZilla3 version="3.27.0.1" platform="mac">
+	<Layout Builddate="2017-07-19" Buildtime="18:21:03">
+		<Resources>
+			<xrc file="certificate.xrc" date="1500481432" />
+			<xrc file="dialogs.xrc" date="1500481432" />
+			<xrc file="inputdialog.xrc" date="1500481432" />
+			<xrc file="menus.xrc" date="1500481432" />
+			<xrc file="netconfwizard.xrc" date="1500481432" />
+			<xrc file="quickconnectbar.xrc" date="1467041087" />
+			<xrc file="settings.xrc" date="1500481432" />
+			<xrc file="sitemanager.xrc" date="1500481432" />
+			<xrc file="toolbar.xrc" date="1467041087" />
+			<xrc file="update.xrc" date="1500481432" />
+			<xrc file="storj.xrc" date="1500481432" />
+		</Resources>
+		<Language id="en_GB" date="">
+			<Font font="0;13;70;90;90;0;.SF NS Text;49" width="779" height="15" />
+			<Dialog name="Site Manager" width="653" />
+		</Language>
+	</Layout>
+</FileZilla3>

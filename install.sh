@@ -138,5 +138,5 @@ else
   exit 1
 fi
 
-install_fish
+#install_fish
 

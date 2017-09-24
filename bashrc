@@ -120,4 +120,4 @@ fi
 # Fish is not POSIX compliant and can cause some issues
 # https://wiki.archlinux.org/index.php/Fish#Not_setting_fish_as_default_shell
 # Keeping exising shell as bash, but switching to fish is a neat solution
-exec fish
+#exec fish

@@ -81,6 +81,8 @@ export LANG=en_GB.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias atom='/Users/vance/.atom/atom'
+alias ctags='/usr/local/bin/ctags'
 alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
@@ -112,11 +114,11 @@ export PATH=/usr/local/bin:$PATH
 
 # Python specific settings
 # Require pip to only install python packages in a virtualenv...
-export PIP_REQUIRE_VIRTUALENV=true
+#export PIP_REQUIRE_VIRTUALENV=true
 # Create a command that explicitly allows installation in the global environment
-gpip(){
-   PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
+#gpip(){
+#   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+#}
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
