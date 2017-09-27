@@ -8,10 +8,11 @@
 -- Define my Hyper key modifiers
 ------------------------------------------------------
 
-local hyper = {"cmd", "alt"}
-local hyperShift = {"shift", "cmd", "alt"}
-local hyperCtrl = {"ctrl", "cmd", "alt"}
+local super = {"cmd", "alt"}
+local superShift = {"shift", "cmd", "alt"}
+local superCtrl = {"ctrl", "cmd", "alt"}
 local cmdCtrl = {"cmd", "ctrl"}
+local hyper = {"shift", "cmd", "ctrl", "alt"}
 
 ------------------------------------------------------
 -- Capture the hostname,
@@ -158,19 +159,19 @@ Bottom50 = {x=0,y=1,w=6,h=1}
 -- Size
 ------------------------------------------------------
 
-hs.hotkey.bind(hyperCtrl, "Down", hs.grid.resizeWindowTaller)
-hs.hotkey.bind(hyperCtrl, "Up", hs.grid.resizeWindowShorter)
-hs.hotkey.bind(hyperCtrl, "Left", hs.grid.resizeWindowThinner)
-hs.hotkey.bind(hyperCtrl, "Right", hs.grid.resizeWindowWider)
+hs.hotkey.bind(superCtrl, "Down", hs.grid.resizeWindowTaller)
+hs.hotkey.bind(superCtrl, "Up", hs.grid.resizeWindowShorter)
+hs.hotkey.bind(superCtrl, "Left", hs.grid.resizeWindowThinner)
+hs.hotkey.bind(superCtrl, "Right", hs.grid.resizeWindowWider)
 
 ------------------------------------------------------
 -- Grid Position
 ------------------------------------------------------
 
-hs.hotkey.bind(hyperShift, "Up", hs.grid.pushWindowUp)
-hs.hotkey.bind(hyperShift, "Down", hs.grid.pushWindowDown)
-hs.hotkey.bind(hyperShift, "Left", hs.grid.pushWindowLeft)
-hs.hotkey.bind(hyperShift, "Right", hs.grid.pushWindowRight)
+hs.hotkey.bind(superShift, "Up", hs.grid.pushWindowUp)
+hs.hotkey.bind(superShift, "Down", hs.grid.pushWindowDown)
+hs.hotkey.bind(superShift, "Left", hs.grid.pushWindowLeft)
+hs.hotkey.bind(superShift, "Right", hs.grid.pushWindowRight)
 
 ------------------------------------------------------
 -- Jump to standard placement
@@ -179,11 +180,11 @@ hs.hotkey.bind(hyperShift, "Right", hs.grid.pushWindowRight)
 -- Maximize
 ------------------------------------------------------
 
-hs.hotkey.bind(hyper, "Up", hs.grid.maximizeWindow)
+hs.hotkey.bind(super, "Up", hs.grid.maximizeWindow)
 
 -- Half Left
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "Left", function()
+hs.hotkey.bind(super, "Left", function()
     local win = hs.window.focusedWindow()
     if win ~= nil then
         local screen = win:screen()
@@ -195,7 +196,7 @@ end)
 
 -- Half Right
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "Right", function()
+hs.hotkey.bind(super, "Right", function()
     local win = hs.window.focusedWindow()
     if win ~= nil then
         local screen = win:screen()
@@ -207,7 +208,7 @@ end)
 
 -- Half Top
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "4", function()
+hs.hotkey.bind(super, "4", function()
     local win = hs.window.focusedWindow()
     if win ~= nil then
         local screen = win:screen()
@@ -219,7 +220,7 @@ end)
 
 -- Half Bottom
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "5", function()
+hs.hotkey.bind(super, "5", function()
     local win = hs.window.focusedWindow()
     if win ~= nil then
         local screen = win:screen()
@@ -231,7 +232,7 @@ end)
 
 -- Third Left
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "1", function()
+hs.hotkey.bind(super, "1", function()
     local win = hs.window.focusedWindow()
     if win ~= nil then
         local screen = win:screen()
@@ -243,7 +244,7 @@ end)
 
 -- Third Middle
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "2", function()
+hs.hotkey.bind(super, "2", function()
     local win = hs.window.focusedWindow()
     if win ~= nil then
         local screen = win:screen()
@@ -255,7 +256,7 @@ end)
 
 -- Third Right
 ------------------------------------------------------
-hs.hotkey.bind(hyper, "3", function()
+hs.hotkey.bind(super, "3", function()
     local win = hs.window.focusedWindow()
     if win ~= nil then
         local screen = win:screen()
@@ -276,8 +277,8 @@ hs.hotkey.bind(cmdCtrl, "Up", function()
 
 -- Multi monitor
 ------------------------------------------------------
-hs.hotkey.bind(hyper, ",", hs.grid.pushWindowNextScreen )
-hs.hotkey.bind(hyper, ".", hs.grid.pushWindowPrevScreen )
+hs.hotkey.bind(super, ",", hs.grid.pushWindowNextScreen )
+hs.hotkey.bind(super, ".", hs.grid.pushWindowPrevScreen )
 
 ------------------------------------------------------
 -- Change Window Focus
@@ -285,14 +286,14 @@ hs.hotkey.bind(hyper, ".", hs.grid.pushWindowPrevScreen )
 
 -- Hyper Down to show window hints
 ------------------------------------------------------
-hs.hotkey.bind(hyper, 'Down', function()
+hs.hotkey.bind(super, 'Down', function()
     hs.hints.style = "vimperator"
     hs.hints.windowHints()
 end)
 
 -- hjkl to move window focus
 ------------------------------------------------------
-hs.hotkey.bind(hyper, 'k', function()
+hs.hotkey.bind(super, 'k', function()
     if hs.window.focusedWindow() then
         hs.window.focusedWindow():focusWindowNorth()
     else
@@ -300,7 +301,7 @@ hs.hotkey.bind(hyper, 'k', function()
     end
 end)
 
-hs.hotkey.bind(hyper, 'j', function()
+hs.hotkey.bind(super, 'j', function()
     if hs.window.focusedWindow() then
         hs.window.focusedWindow():focusWindowSouth()
     else
@@ -308,7 +309,7 @@ hs.hotkey.bind(hyper, 'j', function()
     end
 end)
 
-hs.hotkey.bind(hyper, 'l', function()
+hs.hotkey.bind(super, 'l', function()
     if hs.window.focusedWindow() then
         hs.window.focusedWindow():focusWindowEast()
     else
@@ -316,7 +317,7 @@ hs.hotkey.bind(hyper, 'l', function()
     end
 end)
 
-hs.hotkey.bind(hyper, 'h', function()
+hs.hotkey.bind(super, 'h', function()
     if hs.window.focusedWindow() then
         hs.window.focusedWindow():focusWindowWest()
     else
