@@ -3,8 +3,10 @@
 
 # Specific files and directories in .config
 # Ignore everything in config with exceptions
-#config
-#!config/fish/config.fish
+config
+!config/fish/config.fish
+!config/nvim/*
+!config/karabiner/*
 
 # Atom sync
 # Ignore these directories

@@ -82,7 +82,11 @@ export LANG=en_GB.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias atom='/Users/vance/.atom/atom'
-alias vim='/usr/local/bin/nvim'
+if [[ -f /usr/local/bin/nvim ]]; then
+  alias vim='/usr/local/bin/nvim'
+elif [[ -f /usr/bin/nvim ]]; then
+  alias vim='/usr/bin/nvim'
+fi
 alias ctags='/usr/local/bin/ctags'
 alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'

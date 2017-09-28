@@ -61,15 +61,6 @@ install_zsh () {
 }
 
 
-install_spf13 () {
-  # Test to see if spf13 is installed
-  if [ ! -d ~/.spf13-vim-3/ ]; then
-    echo "Installing SPF13-vim"
-    curl http://j.mp/spf13-vim3 -L -o - | sh
-  fi
-}
-
-
 install_pandoc () {
   echo "Installing pandoc"
   $install pandoc
@@ -82,9 +73,11 @@ install_pandoc () {
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc bash_profile \
+  zshrc oh-my-zsh \
   vimrc vim \
+  tmux.conf \
   hammerspoon \
-  atom \
+#  atom \
   config
 "    # list of files/folders to symlink in homedir
 
@@ -139,4 +132,4 @@ else
 fi
 
 #install_fish
-
+install_zsh
