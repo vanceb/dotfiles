@@ -124,6 +124,11 @@ export PATH=/usr/local/bin:$PATH
 #gpip(){
 #   PIP_REQUIRE_VIRTUALENV="" pip "$@"
 #}
+if [[ -f /usr/local/bin/python2 ]]; then
+  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
+elif [[ -f /usr/bin/python ]]; then
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+fi
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
