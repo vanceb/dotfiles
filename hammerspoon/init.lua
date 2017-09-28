@@ -328,7 +328,7 @@ end)
 -- Open or Focus key applications
 ------------------------------------------------------
 hs.hotkey.bind(hyper, 'x', function()
-    hs.application.launchOrFocus('iTerm')
+    hs.application.launchOrFocus('iTerm 2')
 end)
 hs.hotkey.bind(hyper, 'c', function()
     hs.application.launchOrFocus('Google Chrome')
