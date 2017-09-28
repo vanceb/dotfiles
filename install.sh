@@ -60,6 +60,11 @@ install_zsh () {
   fi
 }
 
+install_tmux () {
+    echo "Installing tmux"
+    $install tmux
+}
+
 
 install_pandoc () {
   echo "Installing pandoc"
@@ -77,7 +82,6 @@ files="bashrc bash_profile \
   vimrc vim \
   tmux.conf \
   hammerspoon \
-#  atom \
   config
 "    # list of files/folders to symlink in homedir
 
@@ -133,3 +137,4 @@ fi
 
 #install_fish
 install_zsh
+install_tmux
