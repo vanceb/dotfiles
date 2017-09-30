@@ -1,5 +1,6 @@
 # Specific file types
 *.swp
+.DS_Store
 
 # Specific files and directories in .config
 # Ignore everything in config with exceptions
