@@ -133,3 +133,8 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
 export WORKON_HOME=~/Virtualenvs
+
+# GPG 2.1.x SSH support
+# See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
+gpgconf --launch gpg-agent
+export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
