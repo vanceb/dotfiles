@@ -134,9 +134,6 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 export WORKON_HOME=~/Virtualenvs
 
-# Trying to get OSX keychain to work for SSH inside a tmux session...
-zstyle :omz:plugins:ssh-agent agent-forwarding on
-=======
 # GPG 2.1.x SSH support
 # See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
 gpgconf --launch gpg-agent
