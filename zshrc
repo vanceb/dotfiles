@@ -51,7 +51,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -115,7 +115,7 @@ export ARCHFLAGS="-arch x86_64"
 
 # Brew...
 # Ensure user-installed binaries take precedence
-export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH
 
 # Python specific settings
 # Require pip to only install python packages in a virtualenv...
@@ -136,3 +136,8 @@ export WORKON_HOME=~/Virtualenvs
 
 # Trying to get OSX keychain to work for SSH inside a tmux session...
 zstyle :omz:plugins:ssh-agent agent-forwarding on
+=======
+# GPG 2.1.x SSH support
+# See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
+gpgconf --launch gpg-agent
+export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
