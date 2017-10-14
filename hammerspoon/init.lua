@@ -22,8 +22,8 @@ local hyper = {"shift", "cmd", "ctrl", "alt"}
 local hostname = hs.host.localizedName()
 
 -- Define machines:
-local work = "surevine_vance"
-local laptop = "vances_macbook"
+local MacBook = "vances_macbook"
+local laptop = "affinity"
 local desktop = "vances_imac"
 
 ------------------------------------------------------
@@ -114,13 +114,13 @@ if hostname == laptop then
 
   -- Do initial setup in case nothing has been set up to this point
   if lastSSID == homeSSID then
-      home_arrived()
+      --home_arrived()
   else
-      home_departed()
+      --home_departed()
   end
   -- Start the wifi watcher
-  local wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
-  wifiWatcher:start()
+  --local wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
+  --wifiWatcher:start()
 
 end
 
@@ -328,7 +328,7 @@ end)
 -- Open or Focus key applications
 ------------------------------------------------------
 hs.hotkey.bind(hyper, 'x', function()
-    hs.application.launchOrFocus('iTerm 2')
+    hs.application.launchOrFocus('iTerm')
 end)
 hs.hotkey.bind(hyper, 'c', function()
     hs.application.launchOrFocus('Google Chrome')
