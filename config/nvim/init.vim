@@ -39,6 +39,10 @@ Plug 'vim-airline/vim-airline'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
+" Autogenerate ctags index for files being edited
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+
 " Display current file hierarchy using tags
 Plug 'majutsushi/tagbar'
 
@@ -126,7 +130,7 @@ set showcmd
 """"""""""""""""""
 
 " Syntastic
-
+"""""""""""
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -139,6 +143,16 @@ let g:syntastic_check_on_wq = 0
 " Map keys to jump to next/prev error
 nnoremap <leader>. :lnext<CR>
 nnoremap <leader>, :lprevious<CR>
+
+" NERDTree
+""""""""""
+map <C-\> :NERDTreeToggle<CR>
+" Close nvim if NERDTree is the only remaining buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Tagbar
+""""""""
+map <C-T> :TagbarToggle<CR>
 
 """"""""""
 " Map keys
@@ -155,13 +169,6 @@ set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr> " clear search
 
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
-
 " Formatting
 map <leader>q gqip
 
@@ -172,11 +179,6 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-
-" Key mappings for the plugins
-map <C-\> :NERDTreeToggle<CR>
-" Close nvim if NERDTree is the only remaining buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Color scheme (terminal)
 " These settings seem to depend on which solarized scheme is enabled
