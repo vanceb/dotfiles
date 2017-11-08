@@ -36,7 +36,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 
 " Solarized colour scheme
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 " Display current file hierarchy using tags
 Plug 'majutsushi/tagbar'
@@ -159,13 +160,15 @@ map <C-\> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Color scheme (terminal)
-set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-"if has('termguicolors') && !has('gui_running')
-"   set termguicolors
-"endif
+" These settings seem to depend on which solarized scheme is enabled
+
+"set t_Co=256
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+
+if has('termguicolors') && !has('gui_running')
+   set termguicolors
+endif
+
 set background=dark
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
 colorscheme solarized

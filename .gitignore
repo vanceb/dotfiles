@@ -7,7 +7,9 @@
 config
 !config/fish/config.fish
 !config/nvim/*
+config/nvim/.netrwhist
 !config/karabiner/*
+
 
 # Atom sync
 # Ignore these directories
