@@ -120,6 +120,25 @@ set laststatus=2
 set showmode
 set showcmd
 
+""""""""""""""""""
+" Plugin Settings
+"
+""""""""""""""""""
+
+" Syntastic
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Map keys to jump to next/prev error
+nnoremap <leader>. :lnext<CR>
+nnoremap <leader>, :lprevious<CR>
 
 """"""""""
 " Map keys
