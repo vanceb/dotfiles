@@ -41,9 +41,20 @@ Plug 'altercation/vim-colors-solarized'
 " Display current file hierarchy using tags
 Plug 'majutsushi/tagbar'
 
+" Vim mode plugins
+"Plug 'klen/python-mode'
+
 " Initialize plugin system
 call plug#end()
 
+""""""""""""""""""""
+" Configure python
+"
+""""""""""""""""""""
+
+" Set to use python installed by homebrew
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 """"""""""""""""""""
 " Define some basics
