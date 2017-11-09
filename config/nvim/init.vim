@@ -160,6 +160,7 @@ map <C-T> :TagbarToggle<CR>
 """"""""""
 
 " Searching
+"""""""""""
 nnoremap / /\v
 vnoremap / /\v
 set hlsearch
@@ -170,6 +171,8 @@ set showmatch
 map <leader><space> :let @/=''<cr> " clear search
 
 " Formatting
+""""""""""""
+" Reflow a paragraph of text
 map <leader>q gqip
 
 " Visualize tabs and newlines
@@ -181,6 +184,7 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 
 " Color scheme (terminal)
+"""""""""""""""""""""""""
 " These settings seem to depend on which solarized scheme is enabled
 
 "set t_Co=256
