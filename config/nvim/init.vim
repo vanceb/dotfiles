@@ -154,6 +154,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """"""""
 map <C-T> :TagbarToggle<CR>
 
+" CtrlP
+"""""""
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+
 """"""""""
 " Map keys
 "
