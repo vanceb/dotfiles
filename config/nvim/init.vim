@@ -37,7 +37,8 @@ Plug 'vim-airline/vim-airline'
 
 " Solarized colour scheme
 "Plug 'altercation/vim-colors-solarized'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
+"Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'iCyMind/NeoSolarized'
 
 " Autogenerate ctags index for files being edited
 Plug 'xolox/vim-misc'
@@ -140,6 +141,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Map key for toggle syntax checking
+nnoremap <leader>s :SyntasticToggleMode<CR>
 " Map keys to jump to next/prev error
 nnoremap <leader>. :lnext<CR>
 nnoremap <leader>, :lprevious<CR>
@@ -202,4 +205,4 @@ if has('termguicolors') && !has('gui_running')
 endif
 
 set background=dark
-colorscheme solarized
+colorscheme NeoSolarized

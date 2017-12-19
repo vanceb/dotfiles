@@ -113,6 +113,11 @@ export KEYTIMEOUT=20
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
+# Arm Tools
+if [[ -d /Users/vance/mbed-toolchain/gcc-arm/bin ]]; then
+  export PATH=/Users/vance/mbed-toolchain/gcc-arm/bin:$PATH
+fi
+
 # Brew...
 # Ensure user-installed binaries take precedence
 export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH
