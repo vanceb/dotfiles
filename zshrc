@@ -143,3 +143,9 @@ export WORKON_HOME=~/Virtualenvs
 # See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
 gpgconf --launch gpg-agent
 export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/vance/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/vance/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/vance/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/vance/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
